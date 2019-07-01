@@ -54,7 +54,8 @@
     width: 70%;
     height: 100%;
     background: #16a085;
-    opacity: .8;
+    opacity: .8;    
+    border-radius: 3rem 0rem 3rem 3rem;
   }
 
   &::after {
@@ -83,6 +84,7 @@
   & figure:nth-child(2) {
     grid-row: 1 / span 8;
     grid-column: 1 / span 7;
+    border-radius: 3rem 0rem 3rem 3rem;
   }
 
   & figure:nth-child(3) {
