@@ -66,11 +66,11 @@ class Header extends Component {
         <div className={'header__name'}>
           <p><span style={{
             color: '#c0392b'
-          }}>tourism</span>
+          }}>cook</span>
           <span style={{
             color: '#16a085',
             fontWeight: '900'
-          }}>Cook</span></p>
+          }}>Square</span></p>
         </div>
         <div className={'header__nav'}>
           {this.renderHeaderMenuItems()}

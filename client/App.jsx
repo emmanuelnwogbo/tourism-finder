@@ -2,6 +2,7 @@ import React, { Suspense, lazy, Component } from 'react';
 import axios from "axios";
 
 const Header = lazy(() => import('./components/Header'));
+const Jumbotron = lazy(() => import('./components/Jumbotron'));
 
 class App extends Component {
   constructor() {
@@ -53,6 +54,9 @@ class App extends Component {
             searchOpen={this.state.searchOpen}
             toggleSearch={this.toggleSearch}
             setSearchTerm={this.setSearchTerm}/>
+        </Suspense>
+        <Suspense fallback={<div></div>}>
+          <Jumbotron />
         </Suspense>
       </div>
     )
