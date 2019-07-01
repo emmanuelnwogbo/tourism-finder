@@ -2,7 +2,12 @@ import React from 'react';
 
 import '../scss/components/jumbotron.scss'
 
-const Jumbotron = () => {
+const Jumbotron = ({ 
+  setRecipeSearchTerm, 
+  setRecipeSearched, 
+  recipeSearchTerm,
+  handleSearch 
+}) => {
   return (
     <div className={'jumbotron'}>
       <div className={'jumbotron__words'}>
@@ -22,6 +27,16 @@ const Jumbotron = () => {
       <figure>
         <img src={'./imgs/people-cooking.jpg'}/>
       </figure>
+      <div className={'jumbotron__search'}>
+        <div className={'jumbotron__search__body'}>
+          <input placeholder={'Search recipes'} 
+              onClick={setRecipeSearched}
+              value={recipeSearchTerm}
+              onKeyDown={handleSearch}
+              onChange={setRecipeSearchTerm}
+              id={'recipe-search'}/>
+        </div>
+      </div>
     </div>
   )
 }
