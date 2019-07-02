@@ -1,4 +1,5 @@
 import React, { Suspense, lazy, Component } from 'react';
+import { Link } from 'react-router-dom';
 
 import '../scss/components/header.scss';
 
@@ -15,12 +16,6 @@ class Header extends Component {
         'Become a Cook'
       ]
     }
-  }
-
-  handleMenuClick = (item) => {
-    const searchTerm = item;
-    this.props.toggleSearch();
-    this.props.setSearchTerm(searchTerm)
   }
 
   renderSignUpBtn = () => {
@@ -45,13 +40,18 @@ class Header extends Component {
   renderHeaderMenuItems = () => {
     return this.state.headerMenuItems.map(item => {
       if (item === 'Jobs' || item === 'Cooks' || item === 'Recipes') {
-        return <div 
+        return <Link to="/search" style={{
+          textDecoration: 'none',
+          color: '#1e272e'
+        }} key={item}>
+          <div 
           className={'header__nav__item'} 
-          key={item}
-          onClick={() => this.handleMenuClick(item)}><p><span style={{
+          key={item}><p><span style={{
             display: 'inline-block',
             marginRight: '.2rem'
-          }}>Browse</span> {item}</p></div>     
+          }}>Browse</span> {item}</p>
+          </div>
+        </Link>     
       }
 
       return <div 

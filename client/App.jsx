@@ -9,8 +9,6 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      searchOpen: false,
-      searchTerm: 'search',
       recipeSearchClicked: false,
       recipeSearchTerm: ''
     };
@@ -80,31 +78,13 @@ class App extends Component {
     return;
   }
 
-  setSearchTerm = (searchTerm) => {
-    this.setState({ searchTerm })
-  }
-
-  toggleSearch = () => {
-    if (this.state.searchOpen) {
-      document.getElementById('searchInput').blur();
-      return this.setState({ searchOpen: false })
-    }
-
-    return this.setState({ searchOpen: true }, () => {
-      document.getElementById('searchInput').focus();
-    })
-  }
-
   render() {
     return (
       <div className={'app'}>
         {this.renderRecipeSearchUi()}
         {this.renderSearch()}
         <Suspense fallback={<div></div>}>
-          <Header 
-            searchOpen={this.state.searchOpen}
-            toggleSearch={this.toggleSearch}
-            setSearchTerm={this.setSearchTerm}/>
+          <Header />
         </Suspense>
         <Suspense fallback={<div></div>}>
           <Jumbotron 

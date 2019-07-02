@@ -54,18 +54,6 @@ class Container extends Component {
           <Suspense fallback={<div></div>}>
             <ProfileCard />
           </Suspense>
-          <Suspense fallback={<div></div>}>
-            <ProfileCard />
-          </Suspense>
-          <Suspense fallback={<div></div>}>
-            <ProfileCard />
-          </Suspense>
-          <Suspense fallback={<div></div>}>
-            <ProfileCard />
-          </Suspense>
-          <Suspense fallback={<div></div>}>
-            <ProfileCard />
-          </Suspense>
         </div>
       </div>
     )
