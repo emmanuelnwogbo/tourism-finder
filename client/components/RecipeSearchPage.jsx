@@ -5,7 +5,7 @@ import axios from "axios";
 const RecipeCard = lazy(() => import('./RecipeCard'));
 const SearchPageHeader = lazy(() => import('./SearchPageHeader'));
 
-import '../scss/components/searchpage.scss'
+import '../scss/components/searchpage.scss' 
 
 
 class SearchPage extends Component {
