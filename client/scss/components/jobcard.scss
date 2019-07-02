@@ -1,0 +1,60 @@
+.jobcard {
+  display: flex;
+  grid-column: span 2;
+  border-radius: .5rem;
+  box-shadow: 0 1rem 17rem rgba(0, 0, 0, 0.4);
+  height: 14rem;
+
+  & figure {
+    width: 30%;
+    overflow: hidden;
+    height: 100%;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__meta {
+    position: relative;
+    padding: 2rem;
+    line-height: 2.3rem;
+    width: 70%;
+
+    p {
+      font-size: 1.3rem;
+    }
+
+    p:nth-child(1) {
+      font-size: 1.7rem;
+    }
+
+    p:nth-child(2) {
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    &--svg {
+      position: absolute;
+      right: 4%;
+      top: 10%;
+      cursor: pointer;
+      
+      & svg {
+        height: 2rem;
+        width: 2rem;
+        fill: #c0392b;
+      }
+    }
+
+    &--date {
+      position: absolute;
+      right: 4%;
+      bottom: 10%;
+      cursor: pointer;
+    }
+  }
+}

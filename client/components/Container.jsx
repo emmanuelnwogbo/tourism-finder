@@ -3,6 +3,7 @@ import axios from "axios";
 
 const RecipeCard = lazy(() => import('./RecipeCard'));
 const ProfileCard = lazy(() => import('./ProfileCard'));
+const JobCard = lazy(() => import('./JobCard'));
 
 class Container extends Component {
   constructor(props) {
@@ -53,6 +54,18 @@ class Container extends Component {
           </Suspense>
           <Suspense fallback={<div></div>}>
             <ProfileCard />
+          </Suspense>
+        </div>
+        <div className={'container__section'}>
+          <h1 className={'container__h1'}>Recent jobs</h1>
+          <Suspense fallback={<div></div>}>
+            <JobCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <JobCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <JobCard />
           </Suspense>
         </div>
       </div>
