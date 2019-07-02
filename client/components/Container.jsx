@@ -13,12 +13,60 @@ class Container extends Component {
   render() {
     return (
       <div className={'container'}>
-        <Suspense fallback={<div></div>}>
-          <RecipeCard />
-        </Suspense>
-        <Suspense fallback={<div></div>}>
-          <ProfileCard />
-        </Suspense>
+        <div className={'container__section'}>
+          <h1 className={'container__h1'}>Popular recipes</h1>
+          <Suspense fallback={<div></div>}>
+            <RecipeCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <RecipeCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <RecipeCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <RecipeCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <RecipeCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <RecipeCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <RecipeCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <RecipeCard />
+          </Suspense>
+        </div>
+        <div className={'container__section'}>
+          <h1 className={'container__h1'}>Popular chefs</h1>
+          <Suspense fallback={<div></div>}>
+            <ProfileCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <ProfileCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <ProfileCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <ProfileCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <ProfileCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <ProfileCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <ProfileCard />
+          </Suspense>
+          <Suspense fallback={<div></div>}>
+            <ProfileCard />
+          </Suspense>
+        </div>
       </div>
     )
   }

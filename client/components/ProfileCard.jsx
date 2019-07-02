@@ -27,6 +27,10 @@ class ProfileCard extends Component {
           <p>Specialties</p>
           <p>Vegeterian, Dieting, Gluten free diets</p>
         </div>
+        <div className={'profilecard__price'}>
+          <p>Price</p>
+          <p>$59/hr</p>
+        </div>
       </div>
     )
   }

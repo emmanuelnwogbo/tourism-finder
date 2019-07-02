@@ -1,7 +1,7 @@
 .profilecard {
   box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
   padding: 2rem;
-  height: 33rem;
+  height: 40rem;
   border-radius: 1rem;
 
   &__top {
@@ -34,6 +34,11 @@
       color: #fff;
       margin-top: 2rem;
       box-shadow: 0 1rem 2rem #16a085;
+      transition: all .2s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+      &:hover {
+        transform: translateY(-.5rem)
+      }
     }
   }
 
@@ -60,6 +65,21 @@
   }
 
   &__bottom {
+    margin-bottom: 1.5rem;
+
+    & p:nth-child(1) {
+      color: #c0392b;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    & p:nth-child(2) {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+  }
+
+  &__price {
     margin-bottom: 1.5rem;
 
     & p:nth-child(1) {

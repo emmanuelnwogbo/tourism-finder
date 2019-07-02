@@ -35,7 +35,7 @@ body {
     left: 0;
     width: 100%;
     height: 6rem;
-    z-index: 3;
+    z-index: 30;
 
     &--cross {
       position: absolute;
@@ -107,9 +107,21 @@ body {
 .container {
   width: 94%;
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(30rem,30rem));
-  grid-gap: 2rem;
   margin-top: 2rem;
-  padding: 3rem 0; 
+  padding: 3rem 0;
+
+  &__h1 {
+    color: #c0392b;
+    font-weight: 900;
+    font-size: 2.5rem;
+    padding: 1rem 0;
+    grid-column: 1 / -1;
+  }
+
+  &__section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem,30rem));
+    grid-gap: 2rem;
+    justify-content: center;
+  }
 }
