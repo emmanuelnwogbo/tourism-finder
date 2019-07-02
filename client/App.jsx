@@ -3,6 +3,7 @@ import axios from "axios";
 
 const Header = lazy(() => import('./components/Header'));
 const Jumbotron = lazy(() => import('./components/Jumbotron'));
+import Container from './components/Container';
 
 class App extends Component {
   constructor() {
@@ -112,6 +113,7 @@ class App extends Component {
             recipeSearchTerm={this.state.recipeSearchTerm}
             handleSearch={this.handleSearch}/>
         </Suspense>
+        <Container />
       </div>
     )
   }

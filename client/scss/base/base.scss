@@ -24,6 +24,7 @@ html {
 body {
   //overflow-y: hidden;
   overflow-x: hidden;
+  height: 200vh;
 }
 
 .app {
@@ -101,4 +102,14 @@ body {
       }
     }
   }
+}
+
+.container {
+  width: 94%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(30rem,30rem));
+  grid-gap: 2rem;
+  margin-top: 2rem;
+  padding: 3rem 0; 
 }

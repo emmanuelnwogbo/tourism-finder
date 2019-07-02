@@ -1,0 +1,76 @@
+.profilecard {
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
+  padding: 2rem;
+  height: 33rem;
+  border-radius: 1rem;
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+
+    & figure {
+      height: 6rem;
+      width: 6rem;
+      border-radius: 50%;
+      overflow: hidden;
+  
+      & img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
+      }
+    }
+
+    & span {
+      font-weight: 700;    
+      padding: .8rem 3rem;
+      text-transform: uppercase;
+      background: #16a085;
+      align-self: center;
+      border-radius: 3rem;
+      cursor: pointer;
+      color: #fff;
+      margin-top: 2rem;
+      box-shadow: 0 1rem 2rem #16a085;
+    }
+  }
+
+  &__middle {
+    margin-bottom: 1.5rem;
+
+    & h2 {
+      font-size: 1.8rem;
+      font-weight: 900;
+    }
+
+    & p:nth-child(2) {
+      color: #c0392b;
+      font-weight: 700;
+      font-size: 1.5rem;
+      display: block;
+      margin-bottom: 1.5rem;
+    }
+
+    & p:nth-child(3) {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+  }
+
+  &__bottom {
+    margin-bottom: 1.5rem;
+
+    & p:nth-child(1) {
+      color: #c0392b;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    & p:nth-child(2) {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+  }
+}
