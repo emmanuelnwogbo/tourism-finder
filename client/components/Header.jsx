@@ -40,7 +40,7 @@ class Header extends Component {
   renderHeaderMenuItems = () => {
     return this.state.headerMenuItems.map(item => {
       if (item === 'Jobs' || item === 'Cooks' || item === 'Recipes') {
-        return <Link to="/search" style={{
+        return <Link to={`/${item}`} style={{
           textDecoration: 'none',
           color: '#1e272e'
         }} key={item}>
@@ -63,19 +63,24 @@ class Header extends Component {
   render() {
     return (
       <div className={'header'}>
-        <div className={'header__name'}>
-          <p><span style={{
-            color: '#c0392b'
-          }}>cook</span>
-          <span style={{
-            color: '#16a085',
-            fontWeight: '900'
-          }}>Square</span></p>
-        </div>
-        <div className={'header__nav'}>
-          {this.renderHeaderMenuItems()}
-          {this.renderSignUpBtn()}
-        </div>
+        <Link to='/' style={{
+          textDecoration: 'none',
+          color: '#1e272e'
+        }}>
+          <div className={'header__name'}>
+            <p><span style={{
+              color: '#c0392b'
+            }}>cook</span>
+            <span style={{
+              color: '#16a085',
+              fontWeight: '900'
+            }}>Square</span></p>
+            </div>
+          </Link>
+          <div className={'header__nav'}>
+            {this.renderHeaderMenuItems()}
+            {this.renderSignUpBtn()}
+          </div>
       </div>
     )
   }

@@ -1,0 +1,51 @@
+.searchpage {
+  position: relative;
+  padding: 9rem 0;
+  
+  &__content {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(30rem,30rem));
+    grid-gap: 2rem;
+    justify-content: center;
+  }
+
+  &__input__parent {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 6rem;
+    z-index: 30;
+
+    &--cross {
+      position: absolute;
+      right: 0;
+      top: 26%;
+      height: 3rem;
+      width: 3rem;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 50%;
+      background: rgba(45, 52, 54,.5);
+      cursor: pointer;
+
+      & svg {
+        height: 2rem;
+        width: 2rem;
+        fill: rgba(45, 52, 54,1.0);
+      } 
+    }
+  }
+
+  &__input {
+    height: 100%;
+    width: 100%;
+    outline: none;
+    border: none;
+    padding: 1rem;
+    font-size: 2rem;
+    border-bottom: .2rem solid rgba(0, 0, 0, 0.4);
+    box-shadow: 0 7rem 28rem rgba(0, 0, 0, 0.4);
+  }
+}

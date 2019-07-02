@@ -61,28 +61,10 @@ class App extends Component {
     return;
   }
 
-  renderSearch = () => {
-    if (this.state.searchOpen) {
-      return (
-        <div className={'app__input__parent'}>
-          <div className={'app__input__parent--cross'} onClick={this.toggleSearch}>
-            <svg>
-              <use xlinkHref="./sprite.svg#icon-cross" />
-            </svg>
-          </div>
-          <input className={'app__input'} id={'searchInput'} placeholder={`Search ${this.state.searchTerm}`}/>
-        </div>
-      )
-    }
-
-    return;
-  }
-
   render() {
     return (
       <div className={'app'}>
         {this.renderRecipeSearchUi()}
-        {this.renderSearch()}
         <Suspense fallback={<div></div>}>
           <Header />
         </Suspense>
