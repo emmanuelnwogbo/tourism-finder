@@ -1,7 +1,9 @@
 import React, { Suspense, lazy, Component } from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import '../scss/components/header.scss';
+import { returnClickedRoute } from '../actions';
 
 class Header extends Component {
   constructor() {
@@ -39,6 +41,9 @@ class Header extends Component {
 
   renderHeaderMenuItems = () => {
     return this.state.headerMenuItems.map(item => {
+      if (item === this.props.state.currentRoute) {
+        return;
+      }
       if (item === 'Jobs' || item === 'Cooks' || item === 'Recipes') {
         return <Link to={`/${item}`} onClick={() => this.handleAppNav(item)} style={{
           textDecoration: 'none',
@@ -61,14 +66,17 @@ class Header extends Component {
   }
 
   handleAppNav = (navName) => {
+    this.props.returnClickedRoute(navName)
     if (navName === 'Jobs') {
       return Array.from(document.getElementsByTagName('body'))[0].style.overflow = 'hidden';
     }
 
-    return Array.from(document.getElementsByTagName('body'))[0].style.overflow = 'scroll';
+    Array.from(document.getElementsByTagName('body'))[0].style.overflow = 'scroll';
+    Array.from(document.getElementsByTagName('body'))[0].style.overflowX = 'hidden';
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className={'header'}>
         <Link to='/' style={{
@@ -94,4 +102,10 @@ class Header extends Component {
   }
 }
 
-export default Header;
+function mapStateToProps(state) {
+  return {
+    state: state.renderJobDetails
+  }
+}
+
+export default connect(mapStateToProps, { returnClickedRoute })(Header);

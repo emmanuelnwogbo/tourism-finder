@@ -1,1 +1,2 @@
 export const RENDER_JOBDATA = 'RENDER_JOBDATA';
+export const CURRENT_ROUTE = 'CURRENT_ROUTE'

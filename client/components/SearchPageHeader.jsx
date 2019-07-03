@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import '../scss/components/searchpageheader.scss'
+import { returnClickedRoute } from '../actions';
 
-const SearchPageHeader = () => {
+const SearchPageHeader = (props) => {
   const menuNames = [
     'Jobs',
     'Cooks',
@@ -12,8 +14,11 @@ const SearchPageHeader = () => {
     'Become a Cook'
   ];
 
-  const returnMenu = () => {
+  const returnMenu = (props) => {
     return menuNames.map(item => {
+      if (item === props || item === localStorage.getItem('route')) {
+        return;
+      }
       if (item === 'Jobs' || item === 'Cooks' || item === 'Recipes') {
         return <Link to={`/${item}`} onClick={() => handleAppNav(item)} style={{
           textDecoration: 'none',
@@ -36,11 +41,13 @@ const SearchPageHeader = () => {
   };
 
   const handleAppNav = (navName) => {
+    props.returnClickedRoute(navName)
     if (navName === 'Jobs') {
       return Array.from(document.getElementsByTagName('body'))[0].style.overflow = 'hidden';
     }
 
-    return Array.from(document.getElementsByTagName('body'))[0].style.overflow = 'scroll';
+    Array.from(document.getElementsByTagName('body'))[0].style.overflow = 'scroll';
+    Array.from(document.getElementsByTagName('body'))[0].style.overflowX = 'hidden';
   }
 
   return (
@@ -59,9 +66,15 @@ const SearchPageHeader = () => {
       }}>Square</span></p>
       </div>
     </Link>
-      {returnMenu()}
+      {returnMenu(props.state.currentRoute)}
     </div>
   )
 }
 
-export default SearchPageHeader;
+function mapStateToProps(state) {
+  return {
+    state: state.renderJobDetails
+  }
+}
+
+export default connect(mapStateToProps, { returnClickedRoute })(SearchPageHeader);

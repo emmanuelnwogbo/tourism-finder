@@ -113,6 +113,7 @@ class JobsSearchPage extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0);
+    localStorage.setItem('route', 'Jobs');
     Array.from(document.getElementsByTagName('body'))[0].style.overflow = 'hidden'
   }
 

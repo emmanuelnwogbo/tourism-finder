@@ -1,9 +1,11 @@
 import {
-  RENDER_JOBDATA
+  RENDER_JOBDATA,
+  CURRENT_ROUTE
 } from './constants';
 
 const initialState = {
-  jobData: {}
+  jobData: {},
+  currentRoute: 'Home'
 }
 
 export const renderJobDetails  = (state=initialState, action={}) => {
@@ -11,6 +13,10 @@ export const renderJobDetails  = (state=initialState, action={}) => {
     case RENDER_JOBDATA:
       return Object.assign({}, state, {
         jobData: action.payload
+      });
+    case CURRENT_ROUTE:
+      return Object.assign({}, state, {
+        currentRoute: action.payload
       });
     default:
       return state;

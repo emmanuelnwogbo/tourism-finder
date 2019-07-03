@@ -28,6 +28,7 @@ class SearchPage extends Component {
 
   componentDidMount() {
     window.scrollTo(0, 0)
+    localStorage.setItem('route', 'Recipes');
   }
 
   render() {
