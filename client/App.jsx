@@ -1,5 +1,10 @@
 import React, { Suspense, lazy, Component } from 'react';
+import faker from 'faker';
 import axios from "axios";
+
+console.log(faker)
+console.log(faker.name.findName());
+console.log(Array.from(faker.random.number()))
 
 const Header = lazy(() => import('./components/Header'));
 const Jumbotron = lazy(() => import('./components/Jumbotron'));

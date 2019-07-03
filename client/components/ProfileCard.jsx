@@ -9,19 +9,26 @@ class ProfileCard extends Component {
   }
 
   render() {
+    const {
+      profilePhoto, 
+      name, 
+      job, 
+      bio, 
+      specialities,
+      price
+    } = this.props;
     return (
       <div className={'profilecard'}>
         <div className={'profilecard__top'}>
           <figure>
-            <img src={'https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80'}/>
+            <img src={profilePhoto}/>
           </figure>
           <span>Follow</span>
         </div>
         <div className={'profilecard__middle'}>
-          <h2>Vinnie Marthew</h2>
-          <p>Chef, Restaurant Manager</p>
-          <p>Donec sollicitudin molestie malesuada. Vestibulum ac diam sit amet quam vehicula elementum sed sit amet dui. 
-          Quisque velit nisi, pretium ut lacinia in, elementum id enim.</p>
+          <h2>{name}</h2>
+          <p>{job}</p>
+          <p>{bio.substring(0, 200)}</p>
         </div>
         <div className={'profilecard__bottom'}>
           <p>Specialties</p>
@@ -29,7 +36,7 @@ class ProfileCard extends Component {
         </div>
         <div className={'profilecard__price'}>
           <p>Price</p>
-          <p>$59/hr</p>
+          <p>${price}/hr</p>
         </div>
       </div>
     )

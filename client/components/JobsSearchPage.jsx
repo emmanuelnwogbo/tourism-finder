@@ -1,7 +1,9 @@
 import React, { Suspense, lazy, Component } from 'react';
 import axios from "axios";
+import faker from 'faker';
 
-import '../scss/components/jobssearchpage.scss'
+import '../scss/components/jobssearchpage.scss';
+import JobBoardRight from './JobBoardRight';
 
 const JobCard = lazy(() => import('./JobCard'));
 const SearchPageHeader = lazy(() => import('./SearchPageHeader'));
@@ -9,7 +11,9 @@ const SearchPageHeader = lazy(() => import('./SearchPageHeader'));
 class JobsSearchPage extends Component {
   constructor() {
     super();
-    this.state = {}
+    this.state = {
+      jobs: ['first', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    }
   }
 
   renderSearch = () => {
@@ -24,8 +28,92 @@ class JobsSearchPage extends Component {
     )
   }
 
+  setJobData = (jobData) => {
+    console.log(jobData)
+  }
+
+  renderJobs = () => {
+    return this.state.jobs.map(job => {
+      if (job === 'first') {
+        const jobData = {
+          id: faker.random.uuid(),
+          img: faker.random.image(),
+          restaurantName: faker.company.companyName(),
+          jobName: 'Chef',
+          location: `${faker.address.city()}, ${faker.address.country()}`,
+          salary: faker.random.number(),
+          description: faker.lorem.paragraph()
+        }
+        return (
+          <Suspense fallback={<div></div>} key={jobData.id}>
+            <JobCard 
+              setJobData={this.setJobData}
+              jobData={jobData}
+              img={jobData.img}
+              restaurantName={jobData.restaurantName} 
+              jobName={jobData.jobName} 
+              location={jobData.location} 
+              salary={jobData.salary}
+              first={true}/>
+          </Suspense>
+        )
+      }
+
+      if (job % 2 === 0) {
+        const jobData = {
+          id: faker.random.uuid(),
+          img: faker.random.image(),
+          restaurantName: faker.company.companyName(),
+          jobName: 'Chef',
+          location: `${faker.address.city()}, ${faker.address.country()}`,
+          salary: faker.random.number(),
+          description: faker.lorem.paragraph()
+        }
+        return (
+          <Suspense fallback={<div></div>} key={jobData.id}>
+            <JobCard 
+              setJobData={this.setJobData}
+              jobData={jobData}
+              img={jobData.img}
+              restaurantName={jobData.restaurantName} 
+              jobName={jobData.jobName} 
+              location={jobData.location} 
+              salary={jobData.salary}
+              first={false}/>
+          </Suspense>
+        )
+      }
+
+      const jobData = {
+        id: faker.random.uuid(),
+        img: faker.random.image(),
+        restaurantName: faker.company.companyName(),
+        jobName: 'Restaurant Manager',
+        location: `${faker.address.city()}, ${faker.address.country()}`,
+        salary: faker.random.number(),
+        description: faker.lorem.paragraph()
+      }
+
+      return (
+        <Suspense fallback={<div></div>} key={jobData.id}>
+          <JobCard 
+            setJobData={this.setJobData}
+            jobData={jobData}
+            img={jobData.img}
+            restaurantName={jobData.restaurantName} 
+            jobName={jobData.jobName} 
+            location={jobData.location} 
+            salary={jobData.salary}
+            first={false}
+            />
+        </Suspense>
+      )
+    })
+  }
+
   componentDidMount() {
-    window.scrollTo(0, 0)
+    window.scrollTo(0, 0);
+    Array.from(document.getElementsByTagName('body'))[0].style.overflow = 'hidden'
   }
 
   render() {
@@ -37,50 +125,9 @@ class JobsSearchPage extends Component {
         </Suspense>
         <div className={'jobssearchpage__content'}>
           <div className={'jobssearchpage__content__left'}>
-            <Suspense fallback={<div></div>}>
-              <JobCard />
-            </Suspense>
-            <Suspense fallback={<div></div>}>
-              <JobCard />
-            </Suspense>
-            <Suspense fallback={<div></div>}>
-              <JobCard />
-            </Suspense>
-            <Suspense fallback={<div></div>}>
-              <JobCard />
-            </Suspense>
-            <Suspense fallback={<div></div>}>
-              <JobCard />
-            </Suspense>
-            <Suspense fallback={<div></div>}>
-              <JobCard />
-            </Suspense>
+            {this.renderJobs()}
           </div>
-          <div className={'jobssearchpage__content__right'}>
-            <figure>
-              <img src={'./imgs/food-1.jpg'}/>
-            </figure>
-            <div className={'jobssearchpage__content__right--header'}>
-              <div className={'jobssearchpage__content__right--meta'}>
-                <h2>Administrative Assistant</h2>
-                <p>Tru Vue– Faribault, MN</p>
-                <p>$32K-$45K (Glassdoor est.)</p>
-              </div>
-              <div className={'jobssearchpage__content__right--btns'}>
-                <span>Apply Now</span>
-                <span>
-                  <svg>
-                    <use xlinkHref="./sprite.svg#icon-heart-outlined" />
-                  </svg>
-                  Save
-                </span>
-              </div>
-            </div>
-            <div className={'jobssearchpage__content__right--description'}>
-              <h2>Description:</h2>
-              <p>Provide administrative support services for Tru Vue-Faribault Executives, Leadership Team, and Human Resources. Present a positive first impression to visitors, clients, customers, and employees on the phone or face to face by greeting, welcoming, and directing them appropriately. Assist team members in administrative projects, answer employee inquiries or direct them appropriately. </p>
-            </div>
-          </div>
+          <JobBoardRight />
         </div>
       </div>
     )
