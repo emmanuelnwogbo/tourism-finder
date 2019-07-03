@@ -11,7 +11,8 @@ class Container extends Component {
     super(props);
     this.state = {
      popularChefs: [1, 2, 3, 4, 5, 6, 7, 8],
-     recentJobs: [1, 2, 3, 4, 5, 6, 7, 8]
+     recentJobs: [1, 2, 3, 4, 5, 6, 7, 8],
+     recipes: [1,2,3,4,5,6]
     }
   }
 
@@ -20,6 +21,7 @@ class Container extends Component {
       return (
         <Suspense fallback={<div></div>} key={faker.random.uuid()}>
           <ProfileCard 
+          id={faker.random.uuid()}
           name={faker.name.findName()}
           profilePhoto={faker.internet.avatar()}
           job={'Chef'}
@@ -36,6 +38,7 @@ class Container extends Component {
         return (
           <Suspense fallback={<div></div>} key={faker.random.uuid()}>
             <JobCard 
+              id={faker.random.uuid()}
               img={faker.random.image()}
               restaurantName={faker.company.companyName()} 
               jobName={'Chef'} 
@@ -47,6 +50,7 @@ class Container extends Component {
       return (
         <Suspense fallback={<div></div>} key={faker.random.uuid()}>
           <JobCard
+            id={faker.random.uuid()}
             img={faker.random.image()} 
             restaurantName={faker.company.companyName()} 
             jobName={'Restaurant Manager'} 
@@ -57,35 +61,26 @@ class Container extends Component {
     })
   }
 
+  renderRecipes = () => {
+    return this.state.recipes.map(recipe => {
+      return (
+        <Suspense fallback={<div></div>} key={faker.random.uuid()}>
+          <RecipeCard id={faker.random.uuid()}/>
+        </Suspense>
+      )
+    })
+  }
+
+  componentDidMount() {
+    
+  }
+
   render() {
     return (
       <div className={'container'}>
         <div className={'container__section'}>
           <h1 className={'container__h1'}>Popular recipes</h1>
-          <Suspense fallback={<div></div>}>
-            <RecipeCard />
-          </Suspense>
-          <Suspense fallback={<div></div>}>
-            <RecipeCard />
-          </Suspense>
-          <Suspense fallback={<div></div>}>
-            <RecipeCard />
-          </Suspense>
-          <Suspense fallback={<div></div>}>
-            <RecipeCard />
-          </Suspense>
-          <Suspense fallback={<div></div>}>
-            <RecipeCard />
-          </Suspense>
-          <Suspense fallback={<div></div>}>
-            <RecipeCard />
-          </Suspense>
-          <Suspense fallback={<div></div>}>
-            <RecipeCard />
-          </Suspense>
-          <Suspense fallback={<div></div>}>
-            <RecipeCard />
-          </Suspense>
+          {this.renderRecipes()}
         </div>
         <div className={'container__section'}>
           <h1 className={'container__h1'}>Popular chefs</h1>

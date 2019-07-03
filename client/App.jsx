@@ -17,6 +17,9 @@ class App extends Component {
       recipeSearchClicked: false,
       recipeSearchTerm: ''
     };
+    window.onload = () => {
+      //console.log('cards', Array.from(document.getElementsByClassName('card')))
+    }
   }
 
   handleSearch = (event) => {

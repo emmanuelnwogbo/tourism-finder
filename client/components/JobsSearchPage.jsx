@@ -47,6 +47,7 @@ class JobsSearchPage extends Component {
         return (
           <Suspense fallback={<div></div>} key={jobData.id}>
             <JobCard 
+              id={jobData.id}
               setJobData={this.setJobData}
               jobData={jobData}
               img={jobData.img}
@@ -72,6 +73,7 @@ class JobsSearchPage extends Component {
         return (
           <Suspense fallback={<div></div>} key={jobData.id}>
             <JobCard 
+              id={jobData.id}
               setJobData={this.setJobData}
               jobData={jobData}
               img={jobData.img}
@@ -97,6 +99,7 @@ class JobsSearchPage extends Component {
       return (
         <Suspense fallback={<div></div>} key={jobData.id}>
           <JobCard 
+            id={jobData.id}
             setJobData={this.setJobData}
             jobData={jobData}
             img={jobData.img}
