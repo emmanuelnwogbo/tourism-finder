@@ -12,14 +12,13 @@
     display: flex;
     width: 90%;
     margin: 1rem auto;
-    height: 82vh;
+    height: 80vh;
     border-radius: 1rem;
     overflow: hidden;
   }
 
   &__content__left {
     width: 60rem;
-    flex-shrink: 0;
     height: 100%;
     overflow: scroll;
     overflow-x: hidden;
@@ -29,15 +28,19 @@
       border: none;
       margin-bottom: .2rem;
     }
+
+    & > .jobcard:last-child {
+      margin-bottom: 4rem;
+    }
   }
 
   &__content__right {
     height: 100%;
     flex-basis: 80rem;
-    flex-shrink: 0;
     height: 100%;
     overflow: scroll;
     overflow-x: hidden;
+    flex-shrink: 1;
 
     & figure {
       height: 20rem;
@@ -92,6 +95,7 @@
     &--description {
       padding: 1rem 4rem;
       font-size: 1.5rem;
+      padding-bottom: 8rem;
 
       & h2 {
         font-weight: 700;
