@@ -3,13 +3,13 @@
   position: relative;    
   height: 40rem;
   background: #fff;
+  cursor: pointer;
 
   & figure {
     overflow: hidden;
     height: 30rem;
     width: 100%;
     border-radius: .5rem;
-    box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
 
     & img {
       width: 100%;
@@ -32,7 +32,7 @@
       margin: 0 auto;
       width: 90%;
       height: 100%;
-      box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
+      box-shadow: 0 1rem 20rem rgba(0, 0, 0, 0.4);
       border-radius: .5rem;
       background: #fff;
 
@@ -40,8 +40,8 @@
         position: absolute;
         top: -10%;
         right: 5%;
-        height: 5rem;
-        width: 5rem;
+        height: 4rem;
+        width: 4rem;
         border-radius: 50%;
         background: #16a085;
         display: flex;
@@ -51,8 +51,8 @@
         box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
 
         & svg {
-          height: 3rem;
-          width: 3rem;
+          height: 2rem;
+          width: 2rem;
           fill: #c0392b;
         }
       }

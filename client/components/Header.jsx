@@ -40,7 +40,7 @@ class Header extends Component {
   renderHeaderMenuItems = () => {
     return this.state.headerMenuItems.map(item => {
       if (item === 'Jobs' || item === 'Cooks' || item === 'Recipes') {
-        return <Link to={`/${item}`} style={{
+        return <Link to={`/${item}`} onClick={() => this.handleAppNav(item)} style={{
           textDecoration: 'none',
           color: '#1e272e'
         }} key={item}>
@@ -58,6 +58,14 @@ class Header extends Component {
         className={'header__nav__item'} 
         key={item}><p>{item}</p></div>
     })
+  }
+
+  handleAppNav = (navName) => {
+    if (navName === 'Jobs') {
+      return Array.from(document.getElementsByTagName('body'))[0].style.overflow = 'hidden';
+    }
+
+    return Array.from(document.getElementsByTagName('body'))[0].style.overflow = 'scroll';
   }
 
   render() {

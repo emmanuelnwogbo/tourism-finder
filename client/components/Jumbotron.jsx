@@ -30,6 +30,7 @@ const Jumbotron = ({
       <div className={'jumbotron__search'}>
         <div className={'jumbotron__search__body'}>
           <input placeholder={'Search recipes'} 
+              autoComplete="off"
               onClick={setRecipeSearched}
               value={recipeSearchTerm}
               onKeyDown={handleSearch}

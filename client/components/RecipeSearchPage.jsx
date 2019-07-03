@@ -17,9 +17,17 @@ class SearchPage extends Component {
   renderSearch = () => {
     return (
       <div className={'searchpage__input__parent'}>
-        <input className={'searchpage__input'} id={'searchInput'} placeholder={`Search recipes`}/>
+        <input 
+          className={'searchpage__input'} 
+          id={'searchInput'} 
+          autoComplete="off" 
+          placeholder={`Search recipes`}/>
       </div>
     )
+  }
+
+  componentDidMount() {
+    window.scrollTo(0, 0)
   }
 
   render() {

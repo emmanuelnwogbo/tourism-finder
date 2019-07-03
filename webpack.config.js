@@ -65,7 +65,8 @@ const config = {
   },
   devServer: {
     contentBase: './client',
-    port: 8000
+    port: 8000,
+    //historyApiFallback: true
   },
   plugins: [
     new LodashModuleReplacementPlugin,

@@ -1,8 +1,9 @@
 .profilecard {
-  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1rem 17rem rgba(0, 0, 0, 0.4);
   padding: 2rem;
   height: 40rem;
   border-radius: 1rem;
+  cursor: pointer;
 
   &__top {
     display: flex;

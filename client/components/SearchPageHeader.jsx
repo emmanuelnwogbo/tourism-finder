@@ -15,7 +15,7 @@ const SearchPageHeader = () => {
   const returnMenu = () => {
     return menuNames.map(item => {
       if (item === 'Jobs' || item === 'Cooks' || item === 'Recipes') {
-        return <Link to={`/${item}`} style={{
+        return <Link to={`/${item}`} onClick={() => handleAppNav(item)} style={{
           textDecoration: 'none',
           color: '#1e272e'
         }} key={item}>
@@ -35,9 +35,17 @@ const SearchPageHeader = () => {
     })
   };
 
+  const handleAppNav = (navName) => {
+    if (navName === 'Jobs') {
+      return Array.from(document.getElementsByTagName('body'))[0].style.overflow = 'hidden';
+    }
+
+    return Array.from(document.getElementsByTagName('body'))[0].style.overflow = 'scroll';
+  }
+
   return (
     <div className={'searchpageheader'}>
-    <Link to='/' style={{
+    <Link to='/' onClick={() => handleAppNav()} style={{
       textDecoration: 'none',
       color: '#1e272e'
     }}>

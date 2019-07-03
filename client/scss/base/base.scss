@@ -24,7 +24,6 @@ html {
 body {
   //overflow-y: hidden;
   overflow-x: hidden;
-  height: 200vh;
 }
 
 .app {
@@ -77,8 +76,7 @@ body {
     color: #c0392b;
     font-weight: 900;
     font-size: 2.5rem;
-    padding: 1rem 0;
-    grid-column: 1 / -1;
+    grid-column: 1 / -1
   }
 
   &__section {
@@ -86,5 +84,6 @@ body {
     grid-template-columns: repeat(auto-fit, minmax(30rem,30rem));
     grid-gap: 2rem;
     justify-content: center;
+    margin-bottom: 3rem;
   }
 }

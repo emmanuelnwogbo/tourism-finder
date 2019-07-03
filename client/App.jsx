@@ -31,12 +31,15 @@ class App extends Component {
     if (this.state.recipeSearchClicked) {
       return this.setState({
         recipeSearchClicked: false
-      }, () => document.getElementById('recipe-search').blur())
+      }, () => {
+        document.getElementById('recipe-search').blur();
+        Array.from(document.getElementsByTagName('body'))[0].style.overflow = 'scroll';
+      })
     }
 
     return this.setState({
       recipeSearchClicked: true
-    })
+    }, () => Array.from(document.getElementsByTagName('body'))[0].style.overflow = 'hidden')
   }
 
   renderRecipeSearchUi = () => {
