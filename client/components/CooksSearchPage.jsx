@@ -13,16 +13,31 @@ class CooksSearchPage extends Component {
   constructor() {
     super();
     this.state = {
-      chefs: ['first', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      chefs: ['first', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      searching: false,
+      searchTerm: ''
+    }
+  }
+
+  search = (event) => {
+    if (event.key === 'Enter' && event.target.value.length > 0) {
+      const val = event.target.value;
+      event.target.value = '';
+      this.setState({ searching: true }, () => {
+        this.setState({ searching: false, searchTerm: `${val} ` })
+      })
     }
   }
 
   renderSearch = () => {
     return (
       <div className={'searchpage__input__parent'}>
-        <input className={'searchpage__input'} 
+        <input 
+          onKeyDown={this.search}
+          className={'searchpage__input'} 
           autoComplete="off"
-          id={'searchInput'} placeholder={`Search cooks`}/>
+          id={'searchInput'} 
+          placeholder={`Search cooks`}/>
       </div>
     )
   }
@@ -48,6 +63,10 @@ class CooksSearchPage extends Component {
   }
 
   render() {
+    if (this.state.searching) {
+      return <div className={'searchpage'}>{this.renderSearch()}</div>
+    }
+
     return (
       <div className={'searchpage'}>
         {this.renderSearch()}

@@ -26,7 +26,7 @@ class Container extends Component {
           profilePhoto={faker.internet.avatar()}
           job={'Chef'}
           price={Math.floor( Math.random() * 20 )}
-          bio={faker.lorem.paragraph()}/>
+          bio={faker.lorem.paragraphs()}/>
         </Suspense>
       )
     })
@@ -72,7 +72,7 @@ class Container extends Component {
   }
 
   componentDidMount() {
-    
+    window.scrollTo(0, 0);
   }
 
   render() {

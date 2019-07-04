@@ -7,11 +7,11 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 
-import { renderJobDetails } from './reducers';
+import { returnDetails } from './reducers';
 const logger = createLogger();
 
 const rootReducer = combineReducers({
-  renderJobDetails
+  returnDetails
 });
 
 const store = createStore(
@@ -22,6 +22,7 @@ import App from './App';
 import RecipeSearchPage from './components/RecipeSearchPage';
 import CooksSearchPage from './components/CooksSearchPage';
 import JobsSearchPage from './components/JobsSearchPage';
+import ProfileView from './components/ProfileView';
   
 ReactDOM.render(
   <Provider store={store}>
@@ -31,7 +32,8 @@ ReactDOM.render(
         <Route exact path='/Recipes' component={RecipeSearchPage} />
         <Route exact path='/Cooks' component={CooksSearchPage} />
         <Route path='/Jobs' component={JobsSearchPage} />
-        </div>
+        <Route path='/ProfileView' component={ProfileView} />
+      </div>
     </Router>,
   </Provider>,  
   document.getElementById('app'));

@@ -104,7 +104,7 @@ class Header extends Component {
 
 function mapStateToProps(state) {
   return {
-    state: state.renderJobDetails
+    state: state.returnDetails
   }
 }
 

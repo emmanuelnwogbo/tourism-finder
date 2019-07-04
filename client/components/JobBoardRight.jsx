@@ -46,7 +46,7 @@ class JobBoardRight extends Component {
 
 function mapStateToProps(state) {
   return {
-    state: state.renderJobDetails
+    state: state.returnDetails
   }
 }
 

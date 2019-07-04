@@ -73,7 +73,7 @@ const SearchPageHeader = (props) => {
 
 function mapStateToProps(state) {
   return {
-    state: state.renderJobDetails
+    state: state.returnDetails
   }
 }
 

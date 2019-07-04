@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import '../scss/components/profilecard.scss';
+import { clickedCookDetails } from '../actions';
 
 class ProfileCard extends Component {
   constructor() {
@@ -45,7 +48,6 @@ class ProfileCard extends Component {
           <div className={'profilecard__middle'}>
             <h2>{name}</h2>
             <p>{job}</p>
-            <p>{bio.substring(0, 200)}</p>
           </div>
           <div className={'profilecard__bottom'}>
             <p>Specialties</p>
@@ -55,6 +57,16 @@ class ProfileCard extends Component {
             <p>Price</p>
             <p>${price}/hr</p>
           </div>
+          <Link to='/ProfileView' style={{
+            textDecoration: 'none',
+            color: '#1e272e'
+          }} onClick={() => this.props.clickedCookDetails([id,
+            profilePhoto, 
+            name, 
+            job, 
+            bio, 
+            specialities,
+            price])}><span className={'profilecard--viewbtn'}>view</span></Link>
         </div>
       )
     }
@@ -65,4 +77,8 @@ class ProfileCard extends Component {
   }
 }
 
-export default ProfileCard
+function mapStateToProps(state) {
+  return state
+}
+
+export default connect(mapStateToProps, { clickedCookDetails })(ProfileCard);

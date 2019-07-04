@@ -1,9 +1,10 @@
 .profilecard {
+  position: relative;
   box-shadow: 0 1rem 17rem rgba(0, 0, 0, 0.4);
   padding: 2rem;
-  height: 40rem;
-  border-radius: 1rem;
+  height: 28rem;
   cursor: pointer;
+  border-radius: 1rem .3rem 3rem;
 
   &__top {
     display: flex;
@@ -44,7 +45,6 @@
   }
 
   &__middle {
-    margin-bottom: 1.5rem;
 
     & h2 {
       font-size: 1.8rem;
@@ -56,7 +56,7 @@
       font-weight: 700;
       font-size: 1.5rem;
       display: block;
-      margin-bottom: 1.5rem;
+      margin-bottom: .5rem;
     }
 
     & p:nth-child(3) {
@@ -66,7 +66,22 @@
   }
 
   &__bottom {
-    margin-bottom: 1.5rem;
+
+    & p:nth-child(1) {
+      color: #c0392b;
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+
+    & p:nth-child(2) {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: .5rem;
+    }
+  }
+
+  &__price {
+    margin-bottom: 1rem;
 
     & p:nth-child(1) {
       color: #c0392b;
@@ -80,18 +95,18 @@
     }
   }
 
-  &__price {
-    margin-bottom: 1.5rem;
-
-    & p:nth-child(1) {
-      color: #c0392b;
-      font-weight: 700;
-      font-size: 1.5rem;
-    }
-
-    & p:nth-child(2) {
-      font-size: 1.2rem;
-      font-weight: 700;
-    }
+  &--viewbtn {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    font-weight: 700;    
+    padding: .8rem 3rem;
+    text-transform: uppercase;
+    background: #c0392b;
+    border-radius: 3rem .3rem;
+    cursor: pointer;
+    color: #fff;
+    box-shadow: 0 1rem 2rem #c0392b;
+    transition: all .2s cubic-bezier(0.165, 0.84, 0.44, 1);    
   }
 }

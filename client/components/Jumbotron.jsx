@@ -1,13 +1,34 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
 import '../scss/components/jumbotron.scss'
+import { returnRecipeSearchUiValue } from '../actions';
 
-const Jumbotron = ({ 
-  setRecipeSearchTerm, 
-  setRecipeSearched, 
-  recipeSearchTerm,
-  handleSearch 
-}) => {
+const Jumbotron = (props) => {
+
+  const openRecipeSearch = () => {
+    document.getElementById('recipe-search-interface').style.zIndex = '200';
+    document.getElementById('recipe-search-interface').style.opacity = '1'
+  }
+
+  const removeRecipeSearchInterface = () => {
+    document.getElementById('recipe-search-interface').style.zIndex = '-1';
+    document.getElementById('recipe-search-interface').style.opacity = '0';
+    document.getElementById('recipe-search').blur()
+  }
+
+  const handleSearch = (event) => {
+    if (event.key === 'Enter') {
+      removeRecipeSearchInterface();
+    }
+  }
+
+  const setRecipeSearchTerm = (event) => {
+    console.log(event.target.value);
+    const val = event.target.value
+    props.returnRecipeSearchUiValue(val);
+  }
+
   return (
     <div className={'jumbotron'}>
       <div className={'jumbotron__words'}>
@@ -31,10 +52,9 @@ const Jumbotron = ({
         <div className={'jumbotron__search__body'}>
           <input placeholder={'Search recipes'} 
               autoComplete="off"
-              onClick={setRecipeSearched}
-              value={recipeSearchTerm}
-              onKeyDown={handleSearch}
+              onClick={openRecipeSearch}
               onChange={setRecipeSearchTerm}
+              onKeyDown={handleSearch}
               id={'recipe-search'}/>
         </div>
       </div>
@@ -42,4 +62,11 @@ const Jumbotron = ({
   )
 }
 
-export default Jumbotron;
+function mapStateToProps(state) {
+  return {
+    state: state.returnDetails
+  }
+}
+
+
+export default connect(mapStateToProps, { returnRecipeSearchUiValue })(Jumbotron);

@@ -12,7 +12,19 @@ class JobsSearchPage extends Component {
   constructor() {
     super();
     this.state = {
-      jobs: ['first', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+      jobs: ['first', 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10],
+      searching: false,
+      searchTerm: ''
+    }
+  }
+
+  search = (event) => {
+    if (event.key === 'Enter' && event.target.value.length > 0) {
+      const val = event.target.value;
+      event.target.value = '';
+      this.setState({ searching: true }, () => {
+        this.setState({ searching: false, searchTerm: `${val} ` })
+      })
     }
   }
 
@@ -20,6 +32,7 @@ class JobsSearchPage extends Component {
     return (
       <div className={'searchpage__input__parent'}>
         <input 
+          onKeyDown={this.search}
           className={'searchpage__input'} 
           id={'searchInput'} 
           autoComplete="off" 
@@ -47,6 +60,7 @@ class JobsSearchPage extends Component {
         return (
           <Suspense fallback={<div></div>} key={jobData.id}>
             <JobCard 
+              searchTerm={this.state.searchTerm}
               id={jobData.id}
               setJobData={this.setJobData}
               jobData={jobData}
@@ -121,6 +135,10 @@ class JobsSearchPage extends Component {
   }
 
   render() {
+    if (this.state.searching) {
+      return <div className={'jobssearchpage'}>{this.renderSearch()}</div>
+    }
+
     return (
       <div className={'jobssearchpage'}>
         {this.renderSearch()}
@@ -134,7 +152,7 @@ class JobsSearchPage extends Component {
           <JobBoardRight />
         </div>
       </div>
-    )
+    )    
   }
 }
 
