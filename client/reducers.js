@@ -2,14 +2,17 @@ import {
   RENDER_JOBDATA,
   CURRENT_ROUTE,
   COOK_DETAILS,
-  SEARCHING_RECIPE
+  SEARCHING_RECIPE,
+  SEARCHING_RECIPE_API,
+  SEARCHING_RECIPE_API_PENDING
 } from './constants';
 
 const initialState = {
   jobData: {},
   currentRoute: 'Home',
   profileViewDetails: '',
-  recipeSearchUiVal: ''
+  recipeSearchUiVal: '',
+  recipes: []
 }
 
 export const returnDetails  = (state=initialState, action={}) => {
@@ -30,6 +33,14 @@ export const returnDetails  = (state=initialState, action={}) => {
       return Object.assign({}, state, {
         recipeSearchUiVal: action.payload
       })
+    case SEARCHING_RECIPE_API_PENDING:
+      return Object.assign({}, state, {
+        recipes: []
+    })
+    case SEARCHING_RECIPE_API:
+      return Object.assign({}, state, {
+        recipes: action.payload.recipes
+    })
     default:
       return state;
   }

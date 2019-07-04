@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import '../scss/components/jumbotron.scss'
-import { returnRecipeSearchUiValue } from '../actions';
+import { returnRecipeSearchUiValue, searchForRecipe } from '../actions';
 
 const Jumbotron = (props) => {
 
@@ -20,6 +20,7 @@ const Jumbotron = (props) => {
   const handleSearch = (event) => {
     if (event.key === 'Enter') {
       removeRecipeSearchInterface();
+      props.searchForRecipe(event.target.value);
     }
   }
 
@@ -69,4 +70,7 @@ function mapStateToProps(state) {
 }
 
 
-export default connect(mapStateToProps, { returnRecipeSearchUiValue })(Jumbotron);
+export default connect(mapStateToProps, { 
+  returnRecipeSearchUiValue, 
+  searchForRecipe 
+})(Jumbotron);

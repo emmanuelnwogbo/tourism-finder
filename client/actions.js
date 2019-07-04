@@ -2,8 +2,12 @@ import {
   RENDER_JOBDATA,
   CURRENT_ROUTE,
   COOK_DETAILS,
-  SEARCHING_RECIPE
+  SEARCHING_RECIPE,
+  SEARCHING_RECIPE_API,
+  SEARCHING_RECIPE_API_PENDING
 } from './constants';
+
+import { key, proxy } from '../config';
 
 export const returnJobsBoardVal = (jobData) => ({
   type: RENDER_JOBDATA,
@@ -29,4 +33,18 @@ export const returnRecipeSearchUiValue = (value) => {
     type: SEARCHING_RECIPE,
     payload: value
   }
+}
+
+export const searchForRecipe = (value) => (dispatch) => {
+  dispatch({ type: SEARCHING_RECIPE_API_PENDING })
+  fetch(`${proxy}http://food2fork.com/api/search?key=${key}&q=${value}`)
+    .then(response => response.json())
+    .then(data => dispatch({
+      type: SEARCHING_RECIPE_API,
+      payload: data
+    }))
+    .catch(error => dispatch({
+      type: REQUEST_ROBOTS_FAILED,
+      payload: error
+    }))
 }

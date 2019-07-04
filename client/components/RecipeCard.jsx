@@ -25,14 +25,17 @@ class RecipeCard extends Component {
 
   render() {
     const {
-      id
+      id,
+      publisher,
+      image,
+      title
     } = this.props;
 
     if (this.state.isIntersecting) {
       return (
         <div className={'recipecard card'} id={`${id}`}>
           <figure>
-            <img src={'./imgs/food-1.jpg'}/>
+            <img src={image}/>
           </figure>
           <div className={'recipecard__meta'}>
             <div className={'recipecard__meta__content'}>
@@ -42,8 +45,8 @@ class RecipeCard extends Component {
                 </svg>
               </span>
               <div className={'recipecard__meta__content__text'}>
-                <h2>Granola Breakfast with Berries and mint</h2>
-                <p>Two Peas and Their Pod</p>
+                <h2>{title}</h2>
+                <p>{publisher}</p>
                 <span>View</span>
               </div>
             </div>

@@ -1,10 +1,10 @@
 import React, { Suspense, lazy, Component } from 'react';
 import faker from 'faker';
-import axios from "axios";
 
 const RecipeCard = lazy(() => import('./RecipeCard'));
 const ProfileCard = lazy(() => import('./ProfileCard'));
 const JobCard = lazy(() => import('./JobCard'));
+import RecipeSection from './RecipeSection'
 
 class Container extends Component {
   constructor(props) {
@@ -61,15 +61,7 @@ class Container extends Component {
     })
   }
 
-  renderRecipes = () => {
-    return this.state.recipes.map(recipe => {
-      return (
-        <Suspense fallback={<div></div>} key={faker.random.uuid()}>
-          <RecipeCard id={faker.random.uuid()}/>
-        </Suspense>
-      )
-    })
-  }
+  
 
   componentDidMount() {
     window.scrollTo(0, 0);
@@ -78,10 +70,7 @@ class Container extends Component {
   render() {
     return (
       <div className={'container'}>
-        <div className={'container__section'}>
-          <h1 className={'container__h1'}>Popular recipes</h1>
-          {this.renderRecipes()}
-        </div>
+        <RecipeSection />
         <div className={'container__section'}>
           <h1 className={'container__h1'}>Popular chefs</h1>
           {this.renderTopChefs()}

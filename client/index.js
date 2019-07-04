@@ -23,6 +23,7 @@ import RecipeSearchPage from './components/RecipeSearchPage';
 import CooksSearchPage from './components/CooksSearchPage';
 import JobsSearchPage from './components/JobsSearchPage';
 import ProfileView from './components/ProfileView';
+import FormView from './components/FormView';
   
 ReactDOM.render(
   <Provider store={store}>
@@ -33,6 +34,8 @@ ReactDOM.render(
         <Route exact path='/Cooks' component={CooksSearchPage} />
         <Route path='/Jobs' component={JobsSearchPage} />
         <Route path='/ProfileView' component={ProfileView} />
+        <Route path='/FormViewRecipe' component={FormView} />
+        <Route path='/FormViewCook' component={FormView} />
       </div>
     </Router>,
   </Provider>,  
