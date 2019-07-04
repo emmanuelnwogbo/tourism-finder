@@ -7,11 +7,12 @@ import { createStore, applyMiddleware, combineReducers } from 'redux';
 import { createLogger } from 'redux-logger';
 import thunkMiddleware from 'redux-thunk';
 
-import { returnDetails } from './reducers';
+import { returnDetails, returnDetails2 } from './reducers';
 const logger = createLogger();
 
 const rootReducer = combineReducers({
-  returnDetails
+  returnDetails,
+  returnDetails2
 });
 
 const store = createStore(

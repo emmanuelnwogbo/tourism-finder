@@ -4,7 +4,8 @@ import {
   COOK_DETAILS,
   SEARCHING_RECIPE,
   SEARCHING_RECIPE_API,
-  SEARCHING_RECIPE_API_PENDING
+  SEARCHING_RECIPE_API_PENDING,
+  SEARCHING_RECIPE_API_FAILED
 } from './constants';
 
 const initialState = {
@@ -41,6 +42,17 @@ export const returnDetails  = (state=initialState, action={}) => {
       return Object.assign({}, state, {
         recipes: action.payload.recipes
     })
+    default:
+      return state;
+  }
+}
+
+export const returnDetails2 = (state=initialState, action={}) => {
+  switch(action.type) {
+    case SEARCHING_RECIPE_API:
+        return Object.assign({}, state, {
+          recipes: action.payload.recipes
+      })
     default:
       return state;
   }

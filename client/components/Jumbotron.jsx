@@ -1,11 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { withRouter } from "react-router";
 
 import '../scss/components/jumbotron.scss'
 import { returnRecipeSearchUiValue, searchForRecipe } from '../actions';
 
 const Jumbotron = (props) => {
-
+  console.log(props, 'jumbotron')
   const openRecipeSearch = () => {
     document.getElementById('recipe-search-interface').style.zIndex = '200';
     document.getElementById('recipe-search-interface').style.opacity = '1'
@@ -21,6 +22,7 @@ const Jumbotron = (props) => {
     if (event.key === 'Enter') {
       removeRecipeSearchInterface();
       props.searchForRecipe(event.target.value);
+      props.history.push('/Recipes');
     }
   }
 
@@ -73,4 +75,4 @@ function mapStateToProps(state) {
 export default connect(mapStateToProps, { 
   returnRecipeSearchUiValue, 
   searchForRecipe 
-})(Jumbotron);
+})(withRouter(Jumbotron));

@@ -4,7 +4,8 @@ import {
   COOK_DETAILS,
   SEARCHING_RECIPE,
   SEARCHING_RECIPE_API,
-  SEARCHING_RECIPE_API_PENDING
+  SEARCHING_RECIPE_API_PENDING,
+  SEARCHING_RECIPE_API_FAILED
 } from './constants';
 
 import { key, proxy } from '../config';
@@ -44,7 +45,7 @@ export const searchForRecipe = (value) => (dispatch) => {
       payload: data
     }))
     .catch(error => dispatch({
-      type: REQUEST_ROBOTS_FAILED,
+      type: SEARCHING_RECIPE_API_FAILED,
       payload: error
     }))
 }

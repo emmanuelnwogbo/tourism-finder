@@ -6,7 +6,6 @@ const RecipeCard = lazy(() => import('./RecipeCard'));
 
 import { searchForRecipe } from '../actions';
 
-
 class RecipeSection extends Component {
   constructor(props) {
     super();
@@ -44,7 +43,7 @@ class RecipeSection extends Component {
 
 function mapStateToProps(state) {
   return {
-    state: state.returnDetails
+    state: state.returnDetails2
   }
 }
 
