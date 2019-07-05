@@ -22,10 +22,7 @@ const UserSchema = new mongoose.Schema({
     trim: true,
     unique: false,   
   },
-  /*photo: {
-    type: String,
-    required: true
-  },*/
+  photo: mongoose.Schema.Types.ObjectId,
   password: {
     type: String,
     required: true,
