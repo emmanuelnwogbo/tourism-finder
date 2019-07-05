@@ -11,6 +11,7 @@
   &__area {
     padding: 1.4rem;
     background: rgba(45, 52, 54,.1);
+    color: #fff;
 
     & input {
       width: 50%;
@@ -23,10 +24,16 @@
       font-weight: 700;
       font-size: 1.5rem;
       color: #fff;
+
+      &::placeholder {
+        color: #fff;
+      }
     }
   }
 
-  & span {
+  &__btn {
+    display: inline-block;
+    margin: 0 3rem;
     font-weight: 700;    
     padding: .8rem 3rem;
     text-transform: uppercase;
