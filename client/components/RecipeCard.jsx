@@ -23,12 +23,18 @@ class RecipeCard extends Component {
     observer.observe(document.getElementById(`${this.props.id}`))      
   }
 
-  render() {
+  openRecipe = (url) => {
+    const win = window.open(url, '_blank');
+    win.focus();
+  }
+
+  render() { 
     const {
       id,
       publisher,
       image,
-      title
+      title,
+      url
     } = this.props;
 
     if (this.state.isIntersecting) {
@@ -47,7 +53,7 @@ class RecipeCard extends Component {
               <div className={'recipecard__meta__content__text'}>
                 <h2>{title}</h2>
                 <p>{publisher}</p>
-                <span>View</span>
+                <span onClick={() => this.openRecipe(url)}>View</span>
               </div>
             </div>
           </div>

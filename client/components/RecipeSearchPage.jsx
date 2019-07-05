@@ -40,6 +40,7 @@ class SearchPage extends Component {
       return (
         <Suspense fallback={<div></div>} key={faker.random.uuid()}>
           <RecipeCard 
+            url={recipe.f2f_url}
             id={faker.random.uuid()} 
             publisher={recipe.publisher}
             image={recipe.image_url}

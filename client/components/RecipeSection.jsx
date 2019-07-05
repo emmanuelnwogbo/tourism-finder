@@ -16,12 +16,15 @@ class RecipeSection extends Component {
   }
 
   renderRecipes = () => {
-    const recipes = this.props.state.recipes;
-    recipes.length = 8;
-    return recipes.map(recipe => {
+    return this.props.state.recipes.map(recipe => {
+      if (this.props.state.recipes.indexOf(recipe) > 8) {
+        return;
+      }
+
       return (
         <Suspense fallback={<div></div>} key={faker.random.uuid()}>
-          <RecipeCard 
+          <RecipeCard
+            url={recipe.f2f_url} 
             id={faker.random.uuid()} 
             publisher={recipe.publisher}
             image={recipe.image_url}
