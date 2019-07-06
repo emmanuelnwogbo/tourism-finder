@@ -48,6 +48,7 @@ forms.post('/cook', upload.single('photo'), [
   const photo = new Photo(photoBody);
   const user = new User(body);
   user.photo = photo._id;
+  user.instantPhotoLink = req.file.buffer.toString('base64');
   //console.log(photo);
   //console.log(user)
 

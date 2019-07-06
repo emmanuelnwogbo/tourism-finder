@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import validator from 'validator';
+import { connect } from 'react-redux';
+import { withRouter } from "react-router";
+
+import { returnSignInState } from '../actions';
 
 import '../scss/components/photodisplay.scss';
 import '../scss/components/form.scss';
@@ -21,7 +26,8 @@ class PhotoDisplay extends Component {
     formFields: null,
     image: null,
     ImageId: null,
-    showError: false
+    showError: false,
+    uploading: false,
   }
  }
 
@@ -110,23 +116,49 @@ class PhotoDisplay extends Component {
 }
 
  handleUpload = (image, ImageId) => {
-  const { url } = this.state;
-  const upload = new FormData();
-  upload.append('photo', image);
-  upload.append('imageId', ImageId);
-  this.state.formFields.forEach(field => {
-    upload.append(field, document.getElementById(field).value);
-  });
-  console.log(upload)
-  axios.post(url, upload, this.initConfig(ImageId)).then(res => {
-    if (res) {
-      console.log(res);
-      this.removeError();
+  Array.from(document.getElementsByTagName("input")).forEach((item) => {
+    console.log(item.value);
+    if (item.id === 'email' && !validator.isEmail(item.value)) {
+      this.showError();
     }
-  }).catch(err => {
-    this.showError();
-    console.log(err, 'error here')
-  })
+
+    if (item.id === 'password' && item.value !== document.getElementById('confirmpassword').value) {
+      this.showError();
+    }
+
+    if (item.id === 'name' && item.value.length === 0) {
+      this.showError();
+    }
+  });
+
+  if (this.state.showError) {
+    return;
+  }
+
+  if (!this.state.showError) {
+    const { url } = this.state;
+    const upload = new FormData();
+    upload.append('photo', image);
+    upload.append('imageId', ImageId);
+    this.state.formFields.forEach(field => {
+      upload.append(field, document.getElementById(field).value);
+    });
+    console.log(upload)
+    this.setState({ uploading: true })
+    axios.post(url, upload, this.initConfig(ImageId)).then(res => {
+      if (res) {
+        
+        this.props.history.push('/');
+        this.props.returnSignInState(res.data);
+        this.removeError();
+        this.setState({ uploading: false });
+      }
+    }).catch(err => {
+      this.showError();
+      console.log(err, 'error here')
+      this.setState({ uploading: false })
+    })    
+  }
  }
 
  handlePreview = (image, ImageId) => {
@@ -181,7 +213,7 @@ class PhotoDisplay extends Component {
  }
 
  renderSubmitBtn = (btnLabel) => {
-   if (!this.state.preview || this.state.image === null || this.state.ImageId === null) {
+   if (!this.state.preview || this.state.image === null || this.state.ImageId === null || this.state.showError) {
      return <span className={'form__btn'} onClick={this.showError}>{btnLabel}</span>
    }
 
@@ -216,6 +248,23 @@ class PhotoDisplay extends Component {
    const { btnLabel } = this.props;
    return (
       <div>
+        {this.state.uploading ? <div style={{
+          position: 'absolute',
+          top: '0',
+          left: '0',
+          height: '100%',
+          width: '100%',
+          background: '#fff',
+          opacity: '.8',
+          textAlign: 'center',
+          fontSize: '2rem',
+          color: '#000000',
+          textTransform: 'uppercase',
+          zIndex: '3',
+          fontWeight: '900'
+        }}><div style={{
+          margin: '10rem 0'
+        }}>Uploading Your Photo and Signing Up...</div></div> : <span></span>}
         <div 
         className={`photodisplay`}
         ref={c => (this._droparea = c)} 
@@ -226,7 +275,7 @@ class PhotoDisplay extends Component {
         <div style={{position: 'relative'}}>
         <h3 className={`photodisplay__h3`}>Pick a profile photo</h3>
         <h3 className={`photodisplay__h3`}>{this.state.preview ? 1 : 0} file selected</h3>
-        <h3 className={`photodisplay__h3`}>{this.state.showError ? 'please fill out all fields properly' : ''}</h3>
+        <h3 className={`photodisplay__h3`} style={{color: 'red'}}>{this.state.showError ? 'please fill out all fields properly' : ''}</h3>
         <div className={`photodisplay__gallery`}>
           {this.renderPreview()}
         </div>
@@ -251,4 +300,10 @@ class PhotoDisplay extends Component {
  }
 }
 
-export default PhotoDisplay;
+function mapStateToProps(state) {
+  return {
+    state: state.returnDetails
+  }
+}
+
+export default connect(mapStateToProps, {returnSignInState})(withRouter(PhotoDisplay));

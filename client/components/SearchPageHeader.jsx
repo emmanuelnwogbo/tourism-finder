@@ -15,7 +15,7 @@ const SearchPageHeader = (props) => {
 
   const returnMenu = (props) => {
     return menuNames.map(item => {
-      if (item === props || item === localStorage.getItem('route')) {
+      if (item === props.currentRoute || item === localStorage.getItem('route')) {
         return;
       }
       if (item === 'Jobs' || item === 'Cooks' || item === 'Recipes') {
@@ -33,7 +33,7 @@ const SearchPageHeader = (props) => {
         </Link>     
       }
 
-      if (item === 'Become a Cook') {
+      if (item === 'Become a Cook' && JSON.parse(window.localStorage.getItem('user_details')) === null) {
         return <Link to='/FormViewCook' onClick={() => handleAppNav(item)} style={{
           textDecoration: 'none',
           color: '#1e272e'
@@ -53,6 +53,8 @@ const SearchPageHeader = (props) => {
         key={item}><p>{item}</p></div>
     })
   };
+
+  console.log(props)
 
   const handleAppNav = (navName) => {
     props.returnClickedRoute(navName)

@@ -23,6 +23,10 @@ const UserSchema = new mongoose.Schema({
     unique: false,   
   },
   photo: mongoose.Schema.Types.ObjectId,
+  instantPhotoLink: {
+    type: String,
+    required: true
+  },
   password: {
     type: String,
     required: true,

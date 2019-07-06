@@ -5,7 +5,8 @@ import {
   SEARCHING_RECIPE,
   SEARCHING_RECIPE_API,
   SEARCHING_RECIPE_API_PENDING,
-  SEARCHING_RECIPE_API_FAILED
+  SEARCHING_RECIPE_API_FAILED,
+  SIGNED_IN
 } from './constants';
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
   currentRoute: 'Home',
   profileViewDetails: '',
   recipeSearchUiVal: '',
-  recipes: []
+  recipes: [],
+  user_data: null
 }
 
 export const returnDetails  = (state=initialState, action={}) => {
@@ -41,6 +43,10 @@ export const returnDetails  = (state=initialState, action={}) => {
     case SEARCHING_RECIPE_API:
       return Object.assign({}, state, {
         recipes: action.payload.recipes
+    })
+    case SIGNED_IN:
+      return Object.assign({}, state, {
+        user_data: action.payload
     })
     default:
       return state;

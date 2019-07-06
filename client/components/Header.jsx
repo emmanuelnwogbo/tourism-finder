@@ -20,22 +20,23 @@ class Header extends Component {
   }
 
   renderSignUpBtn = () => {
-    if (this.state.signedUp) {
+    if (JSON.parse(window.localStorage.getItem('user_details')) !== null) {
       return (
         <div className={'header__profile header__nav__item'}>
           <figure>
-            <img src={'https://images.unsplash.com/photo-1541647376583-8934aaf3448a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80'}/>
+            <img src={`data:image/jpg;base64,${JSON.parse(window.localStorage.getItem('user_details')).instantPhotoLink}`}/>
           </figure>
           <div className={'header__profile__menu'}>
-            <div className={'header__profile__menu--item'}><p>Become a Cook</p></div>
             <div className={'header__profile__menu--item'}><p>Bookmarks</p></div>
-            <div className={'header__profile__menu--item'}><p>Sign Out</p></div>
           </div>
         </div>
       )
     }
 
-    return <div className={'header__nav__item'}><p>Sign Up</p></div>
+    return <Link style={{
+      textDecoration: 'none',
+      color: '#1e272e'
+    }} to='/FormViewCook'><div className={'header__nav__item'} onClick={() => this.handleAppNav('Sign Up')}><p>Sign Up</p></div></Link>
   }
 
   renderHeaderMenuItems = () => {
@@ -58,11 +59,11 @@ class Header extends Component {
         </Link>     
       }
 
-      if (item === 'Become a Cook') {
+      if (item === 'Become a Cook' && JSON.parse(window.localStorage.getItem('user_details')) === null) {
         return <Link to='/FormViewCook' style={{
           textDecoration: 'none',
           color: '#1e272e'
-        }} key={item}><div 
+        }} key={item} onClick={() => this.handleAppNav(item)}><div 
           className={'header__nav__item'} 
           key={item}><p>{item}</p></div>
         </Link>
@@ -87,7 +88,7 @@ class Header extends Component {
         <Link to='/' style={{
           textDecoration: 'none',
           color: '#1e272e'
-        }}>
+        }} onClick={() => this.handleAppNav(item)}>
           <div className={'header__name'}>
             <p><span style={{
               color: '#c0392b'

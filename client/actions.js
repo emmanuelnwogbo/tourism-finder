@@ -5,7 +5,8 @@ import {
   SEARCHING_RECIPE,
   SEARCHING_RECIPE_API,
   SEARCHING_RECIPE_API_PENDING,
-  SEARCHING_RECIPE_API_FAILED
+  SEARCHING_RECIPE_API_FAILED,
+  SIGNED_IN
 } from './constants';
 
 import { key, proxy } from '../config';
@@ -48,4 +49,13 @@ export const searchForRecipe = (value) => (dispatch) => {
       type: SEARCHING_RECIPE_API_FAILED,
       payload: error
     }))
+}
+
+export const returnSignInState = (user_data) => {
+  console.log(user_data)
+  window.localStorage.setItem('user_details', JSON.stringify(user_data));
+  return {
+    type: SIGNED_IN,
+    payload: user_data
+  }
 }

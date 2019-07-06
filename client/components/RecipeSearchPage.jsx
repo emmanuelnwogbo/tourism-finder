@@ -53,6 +53,9 @@ class SearchPage extends Component {
   componentDidMount() {
     window.scrollTo(0, 0)
     localStorage.setItem('route', 'Recipes');
+    if (this.props.state.recipes.length < 1) {
+      return this.props.searchForRecipe('pizza');
+    }
   }
 
   render() {
