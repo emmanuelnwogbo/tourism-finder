@@ -16,17 +16,18 @@ class PhotoDisplay extends Component {
   this.state = {
     url: 'http://localhost:3000/forms/cook',
     images: [],
-    previews: [],
+    preview: false,
     removed: [],
     formFields: null,
     image: null,
-    ImageId: null
+    ImageId: null,
+    showError: false
   }
  }
 
- renderPreviews = () => {
-   const { previews } = this.state;
-   return previews.map(preview => {
+ renderPreview = () => {
+   const { preview } = this.state;
+   if (preview) {
     return (
       <figure id={`${preview.id}`} key={preview.id}>
         <div onClick={this.removePhoto}>remove</div>
@@ -34,18 +35,23 @@ class PhotoDisplay extends Component {
         <span></span>
       </figure>
     )
-   })
+   }
  }
 
  removePhoto = (event) => {
-  const parentElementId = event.target.parentElement.id;
+  this.setState({
+    preview: false,
+    image: null,
+    ImageId: null
+ })
+  /*const parentElementId = event.target.parentElement.id;
   const parentElement = event.target.parentElement
   this.setState(prevState => ({
     removed: [...prevState.removed, parentElementId]
   }), () => {
     console.log(this.state)
     parentElement.parentNode.removeChild(parentElement);
-  })
+  })*/
  }
 
  initConfig = (ImageId) => {
@@ -65,13 +71,39 @@ class PhotoDisplay extends Component {
 
  renderInputs = () => {
   return this.props.inputs.map(input => {
+    if (input === 'email') {
+      return (
+        <div className={'form__area'} key={input}>
+          <input className={'form__area--input'} 
+          name={input} 
+          id={input}
+          placeholder={input}
+          type={'email'}
+          onClick={this.removeError}/>
+        </div>
+      )     
+    }
+
+    if (input === 'password' || input === 'confirmpassword') {
+      return (
+        <div className={'form__area'} key={input}>
+          <input className={'form__area--input'} 
+          name={input} 
+          id={input}
+          placeholder={input}
+          type={'password'}
+          onClick={this.removeError}/>
+        </div>
+      )     
+    }
     return (
       <div className={'form__area'} key={input}>
         <input className={'form__area--input'} 
         name={input} 
         id={input}
         placeholder={input}
-        /*onChange={}*//>
+        type={'text'}
+        onClick={this.removeError}/>
       </div>
     )
   })
@@ -88,9 +120,11 @@ class PhotoDisplay extends Component {
   console.log(upload)
   axios.post(url, upload, this.initConfig(ImageId)).then(res => {
     if (res) {
-      console.log(res)
+      console.log(res);
+      this.removeError();
     }
   }).catch(err => {
+    this.showError();
     console.log(err, 'error here')
   })
  }
@@ -103,31 +137,23 @@ class PhotoDisplay extends Component {
        src: imageReader.result,
        id: ImageId
      }
-     this.setState(prevState => {
-       return {
-         previews: [previewItem],
+     this.setState({
+         preview: previewItem,
          image,
          ImageId
-       }
-     })
+      })
    }
  }
 
  handlePhotos = () => {
   const files = this._input.files;
-  const imageArr = Array.from(files);
-  imageArr.length = 1;
-  this.setState(prevState => {
-    return {
-      images: [...imageArr]
-    }
+  const image = Array.from(files)[0];
+  this.setState({
+    image: image
   }, () => {
-    Array.from(imageArr).forEach(image => {
-      const ImageId = createFileId((Math.round(image.lastModified * 100)/image.lastModified));
-      image.id = ImageId;
-      console.log(image);
-      this.handlePreview(image, ImageId)
-    })
+    const ImageId = createFileId((Math.round(image.lastModified * 100)/image.lastModified));
+    image.id = ImageId;
+    this.handlePreview(image, ImageId);
   })
  }
 
@@ -137,21 +163,29 @@ class PhotoDisplay extends Component {
   this.removeDragOvFeedback(event);
   if (event.dataTransfer.files) {
     const files = event.dataTransfer.files;
-    const imageArr = Array.from(files);
-    imageArr.length = 1;
-    this.setState(prevState => {
-      return {
-        images: [...imageArr]
-      }
-    }, () => {
-      imageArr.forEach(image => {
-        const ImageId = createFileId((Math.round(image.lastModified * 100)/image.lastModified));
-        image.id = ImageId;
-        console.log(image);
-        this.handlePreview(image, ImageId)
-      })
+    const image = Array.from(files)[0];
+    this.setState({ image: image }, () => {
+      const ImageId = createFileId((Math.round(image.lastModified * 100)/image.lastModified));
+      image.id = ImageId;
+      this.handlePreview(image, ImageId);
     })
   }
+ }
+
+ showError = () => {
+   this.setState({ showError: true });
+ }
+
+ removeError = () => {
+   this.setState({ showError: false })
+ }
+
+ renderSubmitBtn = (btnLabel) => {
+   if (!this.state.preview || this.state.image === null || this.state.ImageId === null) {
+     return <span className={'form__btn'} onClick={this.showError}>{btnLabel}</span>
+   }
+
+   return <span className={'form__btn'} onClick={() => this.handleUpload(this.state.image, this.state.ImageId)}>{btnLabel}</span>
  }
 
  sendDragOvFeedback = (event) => {
@@ -179,7 +213,6 @@ class PhotoDisplay extends Component {
  }
 
  render() {
-   const { images, removed } = this.state;
    const { btnLabel } = this.props;
    return (
       <div>
@@ -192,9 +225,10 @@ class PhotoDisplay extends Component {
         onDrop={this.handlePhotosDrop}>
         <div style={{position: 'relative'}}>
         <h3 className={`photodisplay__h3`}>Pick a profile photo</h3>
-        <h3 className={`photodisplay__h3`}>{images.length - removed.length} file selected</h3>
+        <h3 className={`photodisplay__h3`}>{this.state.preview ? 1 : 0} file selected</h3>
+        <h3 className={`photodisplay__h3`}>{this.state.showError ? 'please fill out all fields properly' : ''}</h3>
         <div className={`photodisplay__gallery`}>
-          {this.renderPreviews()}
+          {this.renderPreview()}
         </div>
         </div>
           <input type="file" id="upload"
@@ -211,7 +245,7 @@ class PhotoDisplay extends Component {
         <div className={'form'}>
           {this.renderInputs()}
         </div>
-        <span className={'form__btn'} onClick={() => this.handleUpload(this.state.image, this.state.ImageId)}>{btnLabel}</span>
+        {this.renderSubmitBtn(btnLabel)}
       </div>
    )
  }

@@ -35,7 +35,6 @@ ReactDOM.render(
         <Route exact path='/Cooks' component={CooksSearchPage} />
         <Route path='/Jobs' component={JobsSearchPage} />
         <Route path='/ProfileView' component={ProfileView} />
-        <Route path='/FormViewRecipe' component={FormView} />
         <Route path='/FormViewCook' component={FormView} />
       </div>
     </Router>,

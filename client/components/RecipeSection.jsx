@@ -12,7 +12,9 @@ class RecipeSection extends Component {
   }
 
   componentDidMount() {
-    this.props.searchForRecipe('pizza');
+    if (this.props.state.recipes.length < 1) {
+      return this.props.searchForRecipe('pizza');
+    }
   }
 
   renderRecipes = () => {

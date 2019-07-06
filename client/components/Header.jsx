@@ -14,7 +14,6 @@ class Header extends Component {
         'Jobs',
         'Cooks',
         'Recipes',
-        'Add a Recipe',
         'Become a Cook'
       ]
     }
@@ -57,16 +56,6 @@ class Header extends Component {
           }}>Browse</span> {item}</p>
           </div>
         </Link>     
-      }
-
-      if (item === 'Add a Recipe') {
-        return <Link to='/FormViewRecipe' style={{
-          textDecoration: 'none',
-          color: '#1e272e'
-        }} key={item}><div 
-          className={'header__nav__item'} 
-          key={item}><p>{item}</p></div>
-        </Link>
       }
 
       if (item === 'Become a Cook') {
