@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
+import { Link } from 'react-router-dom';
 
 import '../scss/components/jumbotron.scss'
 import { returnRecipeSearchUiValue, searchForRecipe } from '../actions';
@@ -39,7 +40,10 @@ const Jumbotron = (props) => {
           <p>Become a part of our growing</p>
           <p>Community of Chefs, Cooking Enthusiasts</p>
           <p>and Food aficionados</p>
-          <span className={'jumbotron__words__content--btn'}>Join</span>
+          {JSON.parse(window.localStorage.getItem('user_details')) === null ? <Link style={{
+            textDecoration: 'none',
+            color: '#fff'
+          }} to='/FormViewCook'><span className={'jumbotron__words__content--btn'}>Join</span></Link> : <span></span>}
         </div>
       </div>
       <figure>
