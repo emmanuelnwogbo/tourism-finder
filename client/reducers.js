@@ -44,6 +44,10 @@ export const returnDetails  = (state=initialState, action={}) => {
       return Object.assign({}, state, {
         recipes: action.payload.recipes
     })
+    case SEARCHING_RECIPE_API_FAILED:
+      return Object.assign({}, state, {
+        recipes: 'failed'
+    })    
     case SIGNED_IN:
       return Object.assign({}, state, {
         user_data: action.payload

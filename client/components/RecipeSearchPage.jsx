@@ -36,18 +36,20 @@ class SearchPage extends Component {
   }
 
   renderRecipes = () => {
-    return this.props.state.recipes.map(recipe => {
-      return (
-        <Suspense fallback={<div></div>} key={faker.random.uuid()}>
-          <RecipeCard 
-            url={recipe.f2f_url}
-            id={faker.random.uuid()} 
-            publisher={recipe.publisher}
-            image={recipe.image_url}
-            title={recipe.title}/>
-        </Suspense>
-      )
-    })
+    if (this.props.state.recipes !== 'failed') {
+      return this.props.state.recipes.map(recipe => {
+        return (
+          <Suspense fallback={<div></div>} key={faker.random.uuid()}>
+            <RecipeCard 
+              url={recipe.f2f_url}
+              id={faker.random.uuid()} 
+              publisher={recipe.publisher}
+              image={recipe.image_url}
+              title={recipe.title}/>
+          </Suspense>
+        )
+      })
+    }
   }
 
   componentDidMount() {
