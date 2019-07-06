@@ -32,7 +32,7 @@ const SearchPageHeader = (props) => {
           </div>
         </Link>     
       }
-
+  
       if (item === 'Become a Cook' && JSON.parse(window.localStorage.getItem('user_details')) === null) {
         return <Link to='/FormViewCook' onClick={() => handleAppNav(item)} style={{
           textDecoration: 'none',
@@ -47,10 +47,6 @@ const SearchPageHeader = (props) => {
           </div>
         </Link>
       }
-  
-      return <div 
-        className={'header__nav__item'} 
-        key={item}><p>{item}</p></div>
     })
   };
 
