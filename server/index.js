@@ -17,7 +17,7 @@ app.use(function(req, res, next) {
 });
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(express.static('public'));
+app.use(express.static(path.resolve(__dirname,'public')));
 app.use('/', Home);
 app.use('/forms', forms);
 
