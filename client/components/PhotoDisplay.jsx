@@ -19,7 +19,7 @@ class PhotoDisplay extends Component {
  constructor(props) {
   super(props);
   this.state = {
-    url: 'http://localhost:3000/forms/cook',
+    url: 'https://blooming-hamlet-55601.herokuapp.com/forms/cook',
     images: [],
     preview: false,
     removed: [],
