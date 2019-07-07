@@ -1,0 +1,124 @@
+.recipecard {
+  border-radius: .5rem;
+  position: relative;    
+  height: 40rem;
+  background: #fff;
+  cursor: pointer;
+
+  & figure {
+    overflow: hidden;
+    height: 30rem;
+    width: 100%;
+    border-radius: .5rem;
+
+    & img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+  }
+
+  &__meta {
+    position: absolute;
+    bottom: 6%;
+    left: 0;
+    height: 18rem;
+    width: 100%;
+    z-index: 9;
+
+    @media only screen and (max-width: 50em) {
+      height: 23rem;
+    }
+
+    &__content {
+      position: relative;
+      margin: 0 auto;
+      width: 90%;
+      height: 100%;
+      box-shadow: 0 1rem 20rem rgba(0, 0, 0, 0.4);
+      border-radius: .5rem;
+      background: #fff;
+
+      &--icon {
+        position: absolute;
+        top: -10%;
+        right: 5%;
+        height: 4rem;
+        width: 4rem;
+        border-radius: 50%;
+        background: #16a085;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
+
+        @media only screen and (max-width: 50em) {
+          height: 6rem;
+          width: 6rem;
+        }
+
+        & svg {
+          height: 2rem;
+          width: 2rem;
+          fill: #c0392b;
+
+          @media only screen and (max-width: 50em) {
+            height: 4rem;
+            width: 4rem;
+          }
+        }
+      }
+
+      &__text {
+        text-align: center;
+        padding: 3rem 1rem 1rem 1rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        & h2 {
+          font-weight: 700;
+          font-size: 1.6rem;
+          color: #c0392b;
+
+          @media only screen and (max-width: 50em) {
+            font-size: 2.6rem;
+          }
+        }
+
+        & p {
+          font-size: 1.5rem;
+          font-weight: 500;
+
+          @media only screen and (max-width: 50em) {
+            font-size: 2.5rem;
+          }
+        }
+
+        & span {
+          font-weight: 700;    
+          padding: .8rem 4rem;
+          text-transform: uppercase;
+          background: #16a085;
+          align-self: center;
+          border-radius: 3rem;
+          cursor: pointer;
+          color: #fff;
+          margin-top: 2rem;
+          box-shadow: 0 1rem 2rem #16a085;
+          transition: all .2s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+          @media only screen and (max-width: 50em) {
+            font-size: 1.5rem;
+          }
+
+          &:hover {
+            transform: translateY(-.5rem)
+          }
+        }
+      }
+    }
+  }
+}
