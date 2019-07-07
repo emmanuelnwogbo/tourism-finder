@@ -9,7 +9,9 @@
     "build-dev": "webpack -d --mode development",
     "build-prod": "webpack -p --mode production",
     "dev:start-server": "nodemon server/index.js --exec babel-node",
-    "dev:start-client": "webpack-dev-server --hot --mode development"
+    "dev:start-client": "webpack-dev-server --hot --mode development",
+    "start:prod": "node server/index.js",
+    "build-server": "babel ./server --out-dir dist"
   },
   "author": "Emmanuel <nerdyemmanuel@gmail.com>",
   "license": "ISC",
