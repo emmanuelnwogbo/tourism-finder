@@ -13,7 +13,9 @@ class JobCard extends Component {
   }
 
   handleJobClick = (jobData) => {
-    this.props.returnJobsBoardVal(jobData)
+    if (this.props.path === '/Jobs') {
+      this.props.returnJobsBoardVal(jobData);
+    }
   }
 
   componentDidMount() {
@@ -75,4 +77,6 @@ function mapStateToProps(state) {
   return state
 }
 
-export default connect(mapStateToProps, { returnJobsBoardVal })(JobCard);
+export default connect(mapStateToProps, { 
+  returnJobsBoardVal 
+})(JobCard);

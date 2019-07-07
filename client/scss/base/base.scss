@@ -19,6 +19,10 @@
 html {
   box-sizing: border-box;
   font-size: 69%;
+
+  @media only screen and (max-width: 25.75em) { 
+    font-size: 50%;
+  }
 }
 
 body {
@@ -72,11 +76,20 @@ body {
   margin-top: 2rem;
   padding: 3rem 0;
 
+  @media only screen and (max-width: 50em) {
+    width: 95%;
+  }
+
   &__h1 {
     color: #c0392b;
     font-weight: 900;
     font-size: 2.5rem;
-    grid-column: 1 / -1
+    grid-column: 1 / -1;
+
+    @media only screen and (max-width: 50em) {
+      font-size: 4.5rem;
+      margin: 2rem 0;
+    }
   }
 
   &__section {
@@ -85,5 +98,45 @@ body {
     grid-gap: 2rem;
     justify-content: center;
     margin-bottom: 3rem;
+
+    @media only screen and (max-width: 50em) {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin: 0 auto;
+    }   
+  }
+}
+
+.sidenavBurger {
+  position: fixed;
+  top: 1%;
+  left: 2%;
+  z-index: 18;
+
+  & span {
+    display: block;
+    margin: .9rem 0;
+    width: 8rem;
+    padding: .5rem;
+    border-radius: 3rem;
+    background: #16a085;
+  }
+
+  & span:nth-child(2) {
+    width: 6.5rem;
+    background: #c0392b;
+  }
+
+  &__close {
+    transform: translateX(100%);
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 19;
+    background: #000000;
+    opacity: .6;
   }
 }

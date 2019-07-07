@@ -25,6 +25,10 @@
       font-size: 1.5rem;
       color: #fff;
 
+      @media only screen and (max-width: 50em) {
+        width: 100%;
+      }
+
       &::placeholder {
         color: #fff;
       }

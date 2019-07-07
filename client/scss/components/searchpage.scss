@@ -8,6 +8,11 @@
     grid-gap: 2rem;
     justify-content: center;
     padding: 0 1rem;
+
+    @media only screen and (max-width: 50em) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   &__input__parent {

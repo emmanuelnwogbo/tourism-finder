@@ -15,7 +15,7 @@ const SearchPageHeader = (props) => {
 
   const returnMenu = (props) => {
     return menuNames.map(item => {
-      if (item === props.currentRoute || item === localStorage.getItem('route')) {
+      if (item === props.currentRoute) {
         return;
       }
       if (item === 'Jobs' || item === 'Cooks' || item === 'Recipes') {
@@ -78,7 +78,7 @@ const SearchPageHeader = (props) => {
       }}>Square</span></p>
       </div>
     </Link>
-      {returnMenu(props.state.currentRoute)}
+      {returnMenu(props.state)}
     </div>
   )
 }

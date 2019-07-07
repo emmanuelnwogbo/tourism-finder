@@ -1,6 +1,7 @@
 import React, { Suspense, lazy, Component } from 'react';
 import axios from "axios";
 import faker from 'faker';
+import { withRouter } from "react-router";
 
 import '../scss/components/jobssearchpage.scss';
 import JobBoardRight from './JobBoardRight';
@@ -60,6 +61,7 @@ class JobsSearchPage extends Component {
         return (
           <Suspense fallback={<div></div>} key={jobData.id}>
             <JobCard 
+              path={this.props.location.pathname}
               searchTerm={this.state.searchTerm}
               id={jobData.id}
               setJobData={this.setJobData}
@@ -87,6 +89,7 @@ class JobsSearchPage extends Component {
         return (
           <Suspense fallback={<div></div>} key={jobData.id}>
             <JobCard 
+              path={this.props.location.pathname}
               id={jobData.id}
               setJobData={this.setJobData}
               jobData={jobData}
@@ -113,6 +116,7 @@ class JobsSearchPage extends Component {
       return (
         <Suspense fallback={<div></div>} key={jobData.id}>
           <JobCard 
+            path={this.props.location.pathname}
             id={jobData.id}
             setJobData={this.setJobData}
             jobData={jobData}
@@ -129,6 +133,7 @@ class JobsSearchPage extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props, 'search job page')
     window.scrollTo(0, 0);
     localStorage.setItem('route', 'Jobs');
     Array.from(document.getElementsByTagName('body'))[0].style.overflow = 'hidden'
@@ -156,4 +161,4 @@ class JobsSearchPage extends Component {
   }
 }
 
-export default JobsSearchPage;
+export default withRouter(JobsSearchPage);

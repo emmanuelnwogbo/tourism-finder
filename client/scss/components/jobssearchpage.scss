@@ -23,6 +23,10 @@
     overflow: scroll;
     overflow-x: hidden;
 
+    @media only screen and (max-width: 50em) {
+      width: 100%;
+    }
+
     & > .jobcard {
       width: 100%;
       border: none;
@@ -41,6 +45,10 @@
     overflow: scroll;
     overflow-x: hidden;
     flex-shrink: 1;
+
+    @media only screen and (max-width: 50em) {
+      display: none;
+    }
 
     & figure {
       height: 20rem;

@@ -27,6 +27,10 @@
     width: 100%;
     z-index: 9;
 
+    @media only screen and (max-width: 50em) {
+      height: 23rem;
+    }
+
     &__content {
       position: relative;
       margin: 0 auto;
@@ -50,10 +54,20 @@
         cursor: pointer;
         box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.4);
 
+        @media only screen and (max-width: 50em) {
+          height: 6rem;
+          width: 6rem;
+        }
+
         & svg {
           height: 2rem;
           width: 2rem;
           fill: #c0392b;
+
+          @media only screen and (max-width: 50em) {
+            height: 4rem;
+            width: 4rem;
+          }
         }
       }
 
@@ -68,11 +82,19 @@
           font-weight: 700;
           font-size: 1.6rem;
           color: #c0392b;
+
+          @media only screen and (max-width: 50em) {
+            font-size: 2.6rem;
+          }
         }
 
         & p {
           font-size: 1.5rem;
           font-weight: 500;
+
+          @media only screen and (max-width: 50em) {
+            font-size: 2.5rem;
+          }
         }
 
         & span {
@@ -87,6 +109,10 @@
           margin-top: 2rem;
           box-shadow: 0 1rem 2rem #16a085;
           transition: all .2s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+          @media only screen and (max-width: 50em) {
+            font-size: 1.5rem;
+          }
 
           &:hover {
             transform: translateY(-.5rem)

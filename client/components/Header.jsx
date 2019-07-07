@@ -84,7 +84,7 @@ class Header extends Component {
   render() {
     console.log(this.props)
     return (
-      <div className={'header'}>
+      <div className={'header'} id={'header'}>
         <Link to='/' style={{
           textDecoration: 'none',
           color: '#1e272e'
