@@ -34,8 +34,9 @@ app.use(_bodyParser["default"].urlencoded({
 app.use(_express["default"]["static"]('public'));
 app.use('/', Home);
 app.use('/forms', forms);
-app.listen(3000, function () {
-  console.log('listening on port 3000');
+var PORT = process.env.PORT || 3000;
+app.listen(PORT, function () {
+  console.log("listening on port ".concat(PORT));
 });
 ;
 
@@ -49,6 +50,7 @@ app.listen(3000, function () {
   reactHotLoader.register(Home, "Home", "C:\\Users\\USER\\Desktop\\MY WORK\\tourism-finder\\server\\index.js");
   reactHotLoader.register(forms, "forms", "C:\\Users\\USER\\Desktop\\MY WORK\\tourism-finder\\server\\index.js");
   reactHotLoader.register(app, "app", "C:\\Users\\USER\\Desktop\\MY WORK\\tourism-finder\\server\\index.js");
+  reactHotLoader.register(PORT, "PORT", "C:\\Users\\USER\\Desktop\\MY WORK\\tourism-finder\\server\\index.js");
 })();
 
 ;
